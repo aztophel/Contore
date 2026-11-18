@@ -1,0 +1,42 @@
+# Core bot framework
+discord.py>=2.7,<3
+
+# Database
+asyncpg>=0.29
+
+# HTTP clients (aiohttp: webhooks/image fetching/Arcane sync; httpx: quotes.py's
+# legacy pre-snapshot attachment fallback; requests: family.py avatar caching)
+aiohttp>=3.9
+httpx>=0.27
+requests>=2.31
+
+# Image generation (rank cards, leaderboard cards, level-up cards, family trees)
+Pillow>=10.0
+pilmoji>=2.0
+
+# Family tree rendering -- also requires the SYSTEM graphviz package (the `dot`
+# binary), not just this Python binding. Install via your OS package manager,
+# e.g. `apt install graphviz` / `pacman -S graphviz` / `dnf install graphviz`.
+graphviz>=0.20
+
+# Haiku syllable/mora counting
+pyphen>=0.15
+nltk>=3.8        # cmudict corpus for English syllable counts; downloaded automatically on first use
+pykakasi>=2.2     # optional: kanji->hiragana conversion for Japanese haiku detection; falls back gracefully without it
+
+# /8ball question classification
+spacy>=3.7
+# spaCy's model isn't a pip package -- download it separately:
+#   python -m spacy download en_core_web_md
+
+# uwuify sentiment classification (core/nlp.py, lazily loaded on first /uwuify use)
+transformers>=4.40
+torch>=2.2        # backend for the transformers pipeline; CPU-only build is fine
+
+# Optional: makes the custom level-formula engine (/xp config formula) exact
+# and fast for formulas without a closed-form polynomial solution. Works
+# without it too, just falls back to plain looped summation.
+numpy>=1.26
+
+# /terminate (admin_tools.py) process management
+psutil>=5.9
